@@ -10,21 +10,40 @@ import { Todo } from './components/todo';
 import { Weather } from './components/weather';
 import { Signin } from './components/signin';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 import './App.css';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  }
+})
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  }
+})
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/todo' element={<Todo />} />
-        <Route path='/weather' element={<Weather />} />\
-        <Route path='/sign-up' element={<Signup />} />
-        <Route path='/signin' element={<Signin />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/todo' element={<Todo />} />
+          <Route path='/weather' element={<Weather />} />\
+          <Route path='/sign-up' element={<Signup />} />
+          <Route path='/signin' element={<Signin />} />
+        </Routes>
+      </Router>
+
+    </ThemeProvider>
   );
 }
 
