@@ -1,7 +1,10 @@
 import React from 'react'
+import VideoBg from '../videoBg'
 
 export const About = () => {
   return (
-    <div>About page</div>
+    <div>
+      <VideoBg />
+    </div>
   )
 }
