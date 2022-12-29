@@ -14,13 +14,21 @@ const Root = styled('div')({
   height: '100vh',
   width: '100vw',
   backgroundColor: '#141b2d',
-  padding: '10px',
+  padding: '10px'
 });
+
+const Root2 = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center'
+})
 
 const CardContainer = styled(Grid)({
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
+  padding: '20px',
+  width: '250px'
 });
 
 const CustomTextField = styled(TextField)({
@@ -28,63 +36,129 @@ const CustomTextField = styled(TextField)({
     color: 'white',
   },
   color: 'white !important'
-})
-
+});
 
 export const Weather = () => {
 
   const [searchInput, setSearchInput] = useState('');
   const [grid, setGrid] = useState([]);
 
-  const handleInputChange = (e) => {
-    setSearchInput(e.target.value);
+  const handleSubmit = () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&units=imperial&appid=7402bcd03e0b88f6c75855bda3497673`
+    axios.get(url).then((response) => {
+      if (response?.data) {
+        console.log({response})
+        const { name, weather, main } = response.data;
+        const { temp, temp_max, temp_min } = main;
+        const newLocation = {
+          name,
+          temp,
+          temp_max,
+          temp_min,
+        }
+        const newGrid = cloneDeep(grid);
+        console.log({ newLocation })
+        newGrid.push(newLocation);
+        setGrid(newGrid);
+      }
+    }); 
   }
 
-  useEffect(() => {
-    if(searchInput.length > 0){
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&units=imperial&appid=7402bcd03e0b88f6c75855bda3497673`
-      axios.get(url).then((response) => {
-        if (response?.data) {
-          console.log({response})
-          const { name, weather, main } = response.data;
-          const { temp, temp_max, temp_min } = main;
-          const newLocation = {
-            name,
-            temp,
-            temp_max,
-            temp_min,
-          }
-          const newGrid = cloneDeep(grid);
-          console.log({ newLocation })
-          newGrid.push(newLocation);
-          setGrid(newGrid);
-        }
-      }); 
-    }
+  const createGrid = () => {
+    
+  }
 
-  }, [searchInput])
+  // const handleInputChange = (event) => {
+  //   // setSearchInput(e.target.value);
+  //   // if(event.key === 'Enter'){
+  //     // const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&units=imperial&appid=7402bcd03e0b88f6c75855bda3497673`
+  //     // axios.get(url).then((response) => {
+  //     //   if (response?.data) {
+  //     //     console.log({response})
+  //     //     const { name, weather, main } = response.data;
+  //     //     const { temp, temp_max, temp_min } = main;
+  //     //     const newLocation = {
+  //     //       name,
+  //     //       temp,
+  //     //       temp_max,
+  //     //       temp_min,
+  //     //     }
+  //     //     const newGrid = cloneDeep(grid);
+  //     //     console.log({ newLocation })
+  //     //     newGrid.push(newLocation);
+  //     //     setGrid(newGrid);
+  //     //   }
+  //     // }); 
+
+  // }
+
+  // useEffect(() => {
+  //   if(searchInput.length > 0){
+  //     const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&units=imperial&appid=7402bcd03e0b88f6c75855bda3497673`
+  //     axios.get(url).then((response) => {
+  //       if (response?.data) {
+  //         console.log({response})
+  //         const { name, weather, main } = response.data;
+  //         const { temp, temp_max, temp_min } = main;
+  //         const newLocation = {
+  //           name,
+  //           temp,
+  //           temp_max,
+  //           temp_min,
+  //         }
+  //         const newGrid = cloneDeep(grid);
+  //         console.log({ newLocation })
+  //         newGrid.push(newLocation);
+  //         setGrid(newGrid);
+  //       }
+  //     }); 
+  //   }
+
+  // }, [searchInput])
 
   return (
     <Root>
+      <Root2>
+        <FormControl>
+          <CustomTextField 
+            variant='outlined'
+            label='Enter City/Country'
+            onChange={event => setSearchInput(event.target.value)}
+            value={searchInput}
+          />
+        </FormControl>
+        <Button
+          style={{marginLeft: '10px', height: '55px'}}
+          variant='contained'
+          label='Submit'
+          onClick={handleSubmit}
+          >
+            Submit
+        </Button>
+      </Root2>
 
-      <FormControl>
-        <CustomTextField 
-          variant='outlined'
-          color='warning'
-          focused
-          label='Askussy'
-          onChange={handleInputChange}
-          value={searchInput}
-        />
-      </FormControl>
 
-      <CardContainer>
+      <CardContainer 
+        container
+        direction="row"
+        item xs={12} 
+        sm={6} 
+        md={4}
+        >
+        <Grid>
         {
           grid.map((locationData) => {
             return <WeatherCard data={locationData}/>
           })
         }
-        {/* <Grid item xs={12} sm={6} md={4}>
+        </Grid>
+      </CardContainer>
+    </Root>
+  )
+}
+
+
+{/* <Grid item xs={12} sm={6} md={4}>
           <WeatherCard />
         </Grid> */}
         {/* <Grid item xs={12} sm={6} md={4}>
@@ -99,9 +173,3 @@ export const Weather = () => {
         {/* <Grid item xs={12} sm={6} md={4}>
           <WeatherCard />
         </Grid> */}
-      </CardContainer>
-    </Root>
-  )
-}
-
-
