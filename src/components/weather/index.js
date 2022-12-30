@@ -135,9 +135,8 @@ export const Weather = () => {
           />
         </FormControl>
         <Button
-          style={{marginLeft: '10px', height: '55px'}}
+          style={{marginLeft: '10px', height: '55px', backgroundColor: "#4cceac"}}
           variant='contained'
-          label='Submit'
           onClick={handleSubmit}
           >
             Submit

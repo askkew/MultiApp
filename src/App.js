@@ -18,12 +18,24 @@ import './App.css';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    primary: {
+      main: '#f44336',
+    },
+    secondary: {
+      main: '#00e676',
+    },
   }
 })
 
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
+    primary: {
+      main: '#f44336',
+    },
+    secondary: {
+      main: '#00e676',
+    },
   }
 })
 

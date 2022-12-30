@@ -11,7 +11,7 @@ const Navbar = () => {
     <>
       <Nav>
         <NavLink to='/'>
-          <AccessibleIcon fontSize='large' style={{color:'4cceac'}} />
+          <DarkModeIcon fontSize='large' style={{color:'4cceac'}} />
         </NavLink>
         <Bars />
         <NavMenu>
