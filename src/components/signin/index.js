@@ -1,8 +1,42 @@
 import { Button, Stack, InputLabel, IconButton, OutlinedInput, InputAdornment, Grid, TextField, CardHeader, CardContent, CardActions, Card, FormControl, FormHelperText } from '@mui/material'
 import {VisibilityOff, Visibility} from '@mui/icons-material'
+import { styled } from '@mui/system';
 import React from 'react'
 
 export const Signin = () => {
+
+  const Forms = styled(FormControl)({
+    m: 1, 
+    width: '24.5ch'
+  })
+  
+  const Signupbox = styled('div')({
+    backgroundColor: "#141b2d"
+  })
+  
+  const Card1 = styled(Card)({
+    borderRadius: "30px",
+    backgroundColor: "rgb(37, 47, 74)",
+    boxShadow: "10px 10px 10px rgba(30,30,30,0.5)",
+    maxWidth: 250,
+    justify: "center"
+  })
+  
+  const Gridelement = styled(Grid)({
+    paddingTop: "50px",
+    height: '100vh'
+  })
+  
+  const CardHeader1 = styled(CardHeader)({
+    color: "white",
+    paddingTop: "20px"
+  })
+  
+  const CardContent1 = styled(CardContent)({
+    display: "flex",
+    flexDirection: "column"
+  })
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -11,8 +45,8 @@ export const Signin = () => {
     event.preventDefault();
   };
   return (
-    <div style={{backgroundColor: "#141b2d"}}>
-        <Grid
+    <Signupbox>
+        <Gridelement
         container
         spacing={0}
         direction="column"
@@ -21,14 +55,14 @@ export const Signin = () => {
         style={{ paddingTop: "200px", height: '100vh' }}
         >
 
-        <Grid item xs={3}>
-            <Card style= {{borderRadius: "30px", backgroundColor: "rgb(37, 47, 74)", boxShadow: "10px 10px 10px rgba(30,30,30,0.5)" , maxWidth: 250, justify: "center"}}>
-                <CardHeader style={{color: "white", paddingTop: "20px"}}
+        <Gridelement item xs={3}>
+            <Card1>
+                <CardHeader1
                     title="Sign-in"
                 />
-                <CardContent>
+                <CardContent1>
                 <TextField id="outlined-basic" label="Username" variant="outlined" />
-                <FormControl style={{ m: 1, width: '24.5ch' }} variant="outlined">
+                <Forms variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                 <OutlinedInput
                   style={{paddingRight: "10px"}}
@@ -48,18 +82,18 @@ export const Signin = () => {
                   }
                   label="Password"
                 />
-              </FormControl>
+              </Forms>
                 <Stack style={{paddingTop: "20px"}} spacing={2} direction="row">
                     <Button style={{backgroundColor: "#4cceac"}} variant="contained">Sign In</Button>
                 </Stack>
-                </CardContent>
+                </CardContent1>
                 <CardActions>
                 <Button style={{color: "white"}} href="/sign-up" size="small">Make a new account?</Button>
                 </CardActions>
-            </Card>
-        </Grid>      
-        </Grid>
-    </div>
+            </Card1>
+        </Gridelement>      
+        </Gridelement>
+    </Signupbox>
   );
 }
 

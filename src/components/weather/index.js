@@ -25,10 +25,11 @@ const Root2 = styled('div')({
 
 const CardContainer = styled(Grid)({
   display: 'flex',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  padding: '20px',
-  width: '250px'
+  flexDirection: 'row',
+  width: '100vw',
+  // justifyContent: 'space-around',
+  // alignItems: 'center',
+  // padding: '20px',
 });
 
 const CustomTextField = styled(TextField)({
@@ -48,13 +49,19 @@ export const Weather = () => {
     axios.get(url).then((response) => {
       if (response?.data) {
         console.log({response})
-        const { name, weather, main } = response.data;
-        const { temp, temp_max, temp_min } = main;
+        const { name, weather, main, sys } = response.data;
+        const { temp, temp_max, temp_min, clouds } = main;
+        const { country } = sys;
+        const { main : weathermain } = weather[0];
         const newLocation = {
           name,
           temp,
           temp_max,
           temp_min,
+          country,
+          clouds,
+          weather,
+          weathermain,
         }
         const newGrid = cloneDeep(grid);
         console.log({ newLocation })
@@ -138,38 +145,21 @@ export const Weather = () => {
       </Root2>
 
 
-      <CardContainer 
-        container
-        direction="row"
-        item xs={12} 
-        sm={6} 
-        md={4}
-        >
-        <Grid>
+      <CardContainer container>
         {
           grid.map((locationData) => {
-            return <WeatherCard data={locationData}/>
+            return (
+              <Grid
+                item xs={12} 
+                sm={6} 
+                md={4}
+              >
+                <WeatherCard data={locationData}/>
+              </Grid>
+            )
           })
         }
-        </Grid>
       </CardContainer>
     </Root>
   )
 }
-
-
-{/* <Grid item xs={12} sm={6} md={4}>
-          <WeatherCard />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6} md={4}>
-          <WeatherCard />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6} md={4}>
-          <AddCard />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6} md={4}>
-          <WeatherCard />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6} md={4}>
-          <WeatherCard />
-        </Grid> */}

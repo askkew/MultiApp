@@ -3,15 +3,15 @@ import logo from './logo.svg';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Bars, Nav, NavBtn, NavBtnLink, NavLink, NavMenu } from './NavbarElements';
-import { Typography } from '@mui/material';
+import { Typography, IconButton } from '@mui/material';
+import AccessibleIcon from '@mui/icons-material/Accessible';
 
 const Navbar = () => {
   return (
     <>
       <Nav>
         <NavLink to='/'>
-          {/* <img height="100%" src={logo} alt='logo' /> */}
-          <img height="60px" src={logo} alt='logo' />
+          <AccessibleIcon fontSize='large' style={{color:'4cceac'}} />
         </NavLink>
         <Bars />
         <NavMenu>

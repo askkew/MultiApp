@@ -50,48 +50,50 @@ const WeatherCard = ({data}) => {
     // }
     
   return (
-    <div>
-        <Card style={{boxShadow: "10px 10px 10px rgba(30,30,30,0.5)" , borderRadius: "30px", backgroundColor: "rgb(37, 47, 74)"}}>
+        <Card style={{
+          // width: "350px", 
+          minWidth: '200px',
+          maxWidth: '250px',
+          borderRadius: "30px", 
+          backgroundColor: "rgb(37, 47, 74)"
+          }}>
         <CardContent style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-            {/* <TextField 
-            value={location}
-            onChange={event => setLocation(event.target.value)}
-            onKeyPress={searchLocation}
-            id="outlined-basic" 
-            label="Enter City Name" 
-            variant="outlined" 
-            /> */}
-            <Typography style={{color: "white", paddingTop: "10px"}} gutterBottom variant="h6" component="div">
-                {data.name}
+            <Typography style={{color: "white"}}>
+              <h2>{data.name}</h2><h5>{data.country}</h5>
             </Typography>
-            <Typography style={{color: "white", paddingTop: "10px"}} gutterBottom variant="h6" component="div">
-              {data?.sys?.country}
+            <Typography style={{fontSize: "45px"}}>
+              <h1>{Math.round(data.temp)}°</h1>
+            </Typography>
+            <Typography style={{fontSize: "30px"}}>
+              <h3>{data.weathermain}</h3>
+            </Typography>
+            <Typography style={{fontSize: "30px"}}>
+              <h6>H: {Math.round(data.temp_max)}°   L: {Math.round(data.temp_min)}°</h6>
             </Typography>
         </CardContent>
-        <CardMedia
+        {/* <CardMedia
         //   style={{height: 0, paddingTop: '50%'}}
         //   image={ ( determineCondition() ) }
         />
         <CardContent style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <Typography style={{color: "white"}} gutterBottom variant="h3" component="div">
-            {data.main ? <h2>{data.temp}°F</h2> : null}
+            <h2>{Math.round(data.temp)}°</h2>
           </Typography>
-          <Typography style={{color: "white"}} gutterBottom variant="h3" component="div">
-            <h6>H: {data.temp_max}°F</h6>
+          <Typography style={{color: "white", fontSize: "20px"}} gutterBottom variant="h3" component="div">
+            <h6>H: {Math.round(data.temp_max)}°   L: {Math.round(data.temp_min)}°</h6>
             <h6>L: {data.temp_min}°F</h6>
           </Typography>
-          {/* <Typography style={{color: "white"}} gutterBottom variant="h7" component="div">
+          <Typography style={{color: "white"}} gutterBottom variant="h7" component="div">
             {data.main ? <h4>Feels Like {data?.main?.feels_like}°F</h4> : null}
           </Typography>
           <Typography style={{color: "white"}} gutterBottom variant="h6" component="div">
             {data.weather ? <p>{data?.weather[0].main}</p> : null}
-          </Typography> */}
+          </Typography>
         </CardContent>
-        {/* <CardActions>
+        <CardActions>
           <Button size="small">More Information</Button>
         </CardActions> */}
       </Card>
-    </div>
   )
 }
 
