@@ -6,16 +6,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import moment from 'moment';
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#f44336',
-//     },
-//     secondary: {
-//       main: '#00e676',
-//     },
-//   },
-// });
 
 const Root = styled('div')({
   height: '100vh',
