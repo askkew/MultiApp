@@ -36,7 +36,8 @@ const CustomTextField = styled(TextField)({
   '& .MuiInputBase-input': {
     color: 'white',
   },
-  color: 'white !important'
+  color: 'white !important',
+  paddingBottom: '10px',
 });
 
 export const Weather = () => {
@@ -71,58 +72,6 @@ export const Weather = () => {
     }); 
   }
 
-  const createGrid = () => {
-    
-  }
-
-  // const handleInputChange = (event) => {
-  //   // setSearchInput(e.target.value);
-  //   // if(event.key === 'Enter'){
-  //     // const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&units=imperial&appid=7402bcd03e0b88f6c75855bda3497673`
-  //     // axios.get(url).then((response) => {
-  //     //   if (response?.data) {
-  //     //     console.log({response})
-  //     //     const { name, weather, main } = response.data;
-  //     //     const { temp, temp_max, temp_min } = main;
-  //     //     const newLocation = {
-  //     //       name,
-  //     //       temp,
-  //     //       temp_max,
-  //     //       temp_min,
-  //     //     }
-  //     //     const newGrid = cloneDeep(grid);
-  //     //     console.log({ newLocation })
-  //     //     newGrid.push(newLocation);
-  //     //     setGrid(newGrid);
-  //     //   }
-  //     // }); 
-
-  // }
-
-  // useEffect(() => {
-  //   if(searchInput.length > 0){
-  //     const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&units=imperial&appid=7402bcd03e0b88f6c75855bda3497673`
-  //     axios.get(url).then((response) => {
-  //       if (response?.data) {
-  //         console.log({response})
-  //         const { name, weather, main } = response.data;
-  //         const { temp, temp_max, temp_min } = main;
-  //         const newLocation = {
-  //           name,
-  //           temp,
-  //           temp_max,
-  //           temp_min,
-  //         }
-  //         const newGrid = cloneDeep(grid);
-  //         console.log({ newLocation })
-  //         newGrid.push(newLocation);
-  //         setGrid(newGrid);
-  //       }
-  //     }); 
-  //   }
-
-  // }, [searchInput])
-
   return (
     <Root>
       <Root2>
@@ -142,8 +91,6 @@ export const Weather = () => {
             Submit
         </Button>
       </Root2>
-
-
       <CardContainer container>
         {
           grid.map((locationData) => {
