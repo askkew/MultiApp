@@ -13,8 +13,7 @@ import { cloneDeep } from 'lodash';
 const Root = styled('div')({
   height: '100vh',
   width: '100vw',
-  backgroundColor: '#141b2d',
-  padding: '10px'
+  backgroundColor: '#141b2d'
 });
 
 const Root2 = styled('div')({
@@ -26,6 +25,7 @@ const Root2 = styled('div')({
 const CardContainer = styled(Grid)({
   display: 'flex',
   flexDirection: 'row',
+  alignItems: 'center',
   width: '100vw',
   // justifyContent: 'space-around',
   // alignItems: 'center',
@@ -39,6 +39,13 @@ const CustomTextField = styled(TextField)({
   color: 'white !important',
   paddingBottom: '10px',
 });
+
+const Grid2 = styled(Grid)({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+});
+
 
 export const Weather = () => {
 
@@ -95,13 +102,13 @@ export const Weather = () => {
         {
           grid.map((locationData) => {
             return (
-              <Grid
+              <Grid2
                 item xs={12} 
                 sm={6} 
                 md={4}
               >
                 <WeatherCard data={locationData}/>
-              </Grid>
+              </Grid2>
             )
           })
         }
